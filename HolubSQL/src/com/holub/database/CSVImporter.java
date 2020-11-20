@@ -69,7 +69,7 @@ public class CSVImporter implements Table.Importer
 	private String[]        columnNames;
 	private String          tableName;
 
-	public CSVImporter( Reader in )
+	public CSVImporter( Reader in ) 
 	{	this.in = in instanceof BufferedReader
 						? (BufferedReader)in
                         : new BufferedReader(in)
@@ -102,4 +102,15 @@ public class CSVImporter implements Table.Importer
 	}
 
 	public void endTable() throws IOException {}
+	
+	public static class Test
+	{ 	public static void main( String[] args ) throws IOException
+		{	
+		Reader in = new FileReader( "/Users/jomin-a/git/2020CAU_Design_Pattern/HolubSQL/testdata/people.csv" );
+		Table people = new ConcreteTable( new CSVImporter(in) );
+		in.close();
+		
+		System.out.println(people.toString());
+		}
+	}
 }

@@ -81,7 +81,7 @@ public class CSVExporter implements Table.Exporter
 		out.write("\n");
 		storeRow( columnNames ); // comma separated list of columns ids
 	}
-
+ 
 	public void storeRow( Iterator data ) throws IOException
 	{	int i = width;
 		while( data.hasNext() )

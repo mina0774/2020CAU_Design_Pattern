@@ -48,7 +48,7 @@ import com.holub.tools.ArrayIterator;
  * @include /etc/license.txt
  */
 
-/*package*/ class ConcreteTable implements Table
+/*package*/ class ConcreteTable implements Table 
 {
 	// Supporting clone() complicates the following declarations. In
 	// particular, the fields can't be final because they're modified
