@@ -29,6 +29,9 @@ package com.holub.database;
 import java.io.*;
 import java.util.*;
 
+import javax.swing.JFrame;
+import javax.swing.JScrollPane;
+
 /***
  *	Pass this exporter to a {@link Table#export} implementation to
  *	create a comma-sparated-value version of a {@link Table}.
@@ -98,4 +101,25 @@ public class CSVExporter implements Table.Exporter
 
 	public void startTable() throws IOException {/*nothing to do*/}
 	public void endTable()   throws IOException {/*nothing to do*/}
+	
+	
+	public static class Test
+	{ 	public static void main( String[] args ) throws IOException
+		{	
+			Table people = TableFactory.create( "people",
+						   new String[]{ "First", "Last"		} );
+			people.insert( new String[]{ "Allen",	"Holub" 	} );
+			people.insert( new String[]{ "Ichabod",	"Crane" 	} );
+			people.insert( new String[]{ "Rip",		"VanWinkle" } );
+			people.insert( new String[]{ "Goldie",	"Locks" 	} );
+
+			// 경로를 설정해준 후, 이 곳에 파일을 생성
+			Writer out = new FileWriter( "/Users/jomin-a/git/2020CAU_Design_Pattern/HolubSQL/testdata/people.csv" );
+			people.export( new CSVExporter(out) );
+			out.close();
+		}
+	}
 }
+
+
+

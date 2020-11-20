@@ -75,7 +75,7 @@ public class JTableExporter implements Table.Exporter
 	{
 		contents	= new Object[height][width];
 		columnHeads = new String[width];
-
+ 
 		int columnIndex = 0;
 		while( columnNames.hasNext() )
 			columnHeads[columnIndex++] = columnNames.next().toString();
