@@ -27,33 +27,30 @@ public class HTMLExporter implements Table.Exporter {
 		out.write(tableName == null ? "<anonymous>" : tableName );
 		out.write("</head>");
 		// 테이블 시작
-		out.write("<table>");
+		out.write("<table>\n");
 		// 행을 하나씩 읽어
 		storeRow( columnNames ); // comma separated list of columns ids
 	}
 
 	public void storeRow( Iterator data ) throws IOException
 	{	int i = width;
-		int h = height;
 		// 하나의 행 시작 
-		out.write("<tr>");
-		// 하나의 행에 열 개수만큼 추
+		out.write("<tr>\n");
+		// 하나의 행에 열 개수만큼 추가 
 		while( data.hasNext() )
 		{	Object datum = data.next();
 
 			if( datum != null )	{
 				out.write("<td>");
-				out.write( datum.toString() );
-			}
-			if( --i > 0 ) {
-				out.write("</td>");
+				out.write( datum.toString());
+				out.write("</td>\n");
 			}
 		}
 		// 다음 행으로 넘어감 
-		out.write("</tr>");
+		out.write("</tr>\n");
 		
 		// 마지막 행일 때, 테이블 닫고, html 형식도 닫아
-		if(--h==0) {
+		if(height--==0) {
 			out.write("</table></html>");
 		}
 	}
