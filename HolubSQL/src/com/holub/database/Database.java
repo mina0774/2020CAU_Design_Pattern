@@ -1447,7 +1447,6 @@ public final class Database
 		try
 		{	
 			Table result = primary.select(selector, columns, participantsInJoin);
-			System.out.println(7);
 			// If this is a "SELECT INTO <table>" request, remove the 
 			// returned table from the UnmodifiableTable wrapper, give
 			// it a name, and put it into the tables Map.

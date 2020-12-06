@@ -576,7 +576,7 @@ import com.holub.tools.ArrayIterator;
 		String[] columnNames = null;
 		Table[]	 otherTables = null;
 
-		if( requestedColumns != null )  // SELECT *
+		if( requestedColumns != null )  
 		{
 			// Can't cast an Object[] to a String[], so make a copy to ensure
 			// type safety.
