@@ -266,6 +266,7 @@ public class Scanner
 			IN			= tokens.create( "'IN'" 		 	),
 			INPUT		= tokens.create( "INPUT"		 	),
 			IDENTIFIER	= tokens.create( "[a-z_][a-z_0-9]*" );
+	     
 
 		public static void main(String[] args) throws ParseFailure
 		{

@@ -40,4 +40,8 @@ public class BeginToken implements Token
 {	public boolean match(String input, int offset){ return false; }
 	public String lexeme()						  { return ""; }
 	public String toString()					  { return "BeginToken"; }
+	
+	public void accept(Visitor visitor) {
+		visitor.visit(this);
+	}
 }

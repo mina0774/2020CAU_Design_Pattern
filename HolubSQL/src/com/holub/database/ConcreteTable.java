@@ -67,6 +67,7 @@ import com.holub.tools.ArrayIterator;
 
 	private transient boolean	 isDirty			= false;
 	private transient LinkedList transactionStack	= new LinkedList();
+	
 
 	/**********************************************************************
 	 *  Create a table with the given name and columns.
@@ -75,15 +76,15 @@ import com.holub.tools.ArrayIterator;
 	 */
 	public ConcreteTable( String tableName, String[] columnNames )
 	{	this.tableName   = tableName;
-		this.columnNames = (String[]) columnNames.clone();
+		this.setColumnNames((String[]) columnNames.clone());
 	}
 	/**********************************************************************
 	 * Return the index of the named column. Throw an
 	 * IndexOutOfBoundsException if the column doesn't exist.
 	 */
 	private int indexOf( String columnName )
-	{	for( int i = 0; i < columnNames.length; ++i )
-			if( columnNames[i].equals( columnName ) )
+	{	for( int i = 0; i < getColumnNames().length; ++i )
+			if( getColumnNames()[i].equals( columnName ) )
 					return i;
 
 		throw new IndexOutOfBoundsException(
@@ -102,9 +103,9 @@ import com.holub.tools.ArrayIterator;
 		int width		 =  importer.loadWidth();
 		Iterator columns =	importer.loadColumnNames();
 
-		this.columnNames = new String[ width ];
+		this.setColumnNames(new String[ width ]);
 		for(int i = 0; columns.hasNext() ;)
-			columnNames[i++] = (String) columns.next();
+			getColumnNames()[i++] = (String) columns.next();
 
 		while( (columns = importer.loadRow()) != null )
 		{	Object[] current = new Object[width];
@@ -118,9 +119,9 @@ import com.holub.tools.ArrayIterator;
 	public void export( Table.Exporter exporter ) throws IOException
 	{	exporter.startTable();
 		exporter.storeMetadata( tableName,
-		                        columnNames.length,
+		                        getColumnNames().length,
 		                        rowSet.size(),
-								new ArrayIterator(columnNames) );
+								new ArrayIterator(getColumnNames()) );
 
 		for( Iterator i = rowSet.iterator(); i.hasNext(); )
 			exporter.storeRow( new ArrayIterator((Object[]) i.next()) );
@@ -217,11 +218,11 @@ import com.holub.tools.ArrayIterator;
 		}
 
 		public int columnCount()
-		{	return columnNames.length;
+		{	return getColumnNames().length;
 		}
 
 		public String columnName(int index)
-		{	return columnNames[index];
+		{	return getColumnNames()[index];
 		}
 
 		public Object column( String columnName )
@@ -396,7 +397,7 @@ import com.holub.tools.ArrayIterator;
 	//----------------------------------------------------------------------
 	public Table select( Selector where )
 	{	Table resultTable = new ConcreteTable( null,
-										(String[]) columnNames.clone() );
+										(String[]) getColumnNames().clone() );
 
 		Results		 	currentRow	= (Results) rows();
 		Cursor[] envelope	= new Cursor[]{ currentRow };
@@ -453,6 +454,7 @@ import com.holub.tools.ArrayIterator;
 
 		// Create places to hold the result of the join and to hold
 		// iterators for each table involved in the join.
+		
 
 		Table	 resultTable = new ConcreteTable(null,requestedColumns);
 		Cursor[] envelope	 = new Cursor[allTables.length];
@@ -585,6 +587,8 @@ import com.holub.tools.ArrayIterator;
 
 			while( column.hasNext() )
 				columnNames[i++] = column.next().toString();
+		}else { // SELECT * 
+			columnNames=getColumnNames().clone();
 		}
 
 		if( other != null )
@@ -603,12 +607,12 @@ import com.holub.tools.ArrayIterator;
 	public  String	name()				{ return tableName; 		 }
 	public  void	rename(String s)	{ tableName = s;			 }
 	public  boolean	isDirty()			{ return isDirty;			 }
-	private int		width()				{ return columnNames.length; }
+	private int		width()				{ return getColumnNames().length; }
 	//----------------------------------------------------------------------
 	public Object clone() throws CloneNotSupportedException
 	{	ConcreteTable copy	= (ConcreteTable)  super.clone();
 		copy.rowSet			= (LinkedList)	   rowSet.clone();
-		copy.columnNames 	= (String[]) columnNames.clone();
+		copy.setColumnNames((String[]) getColumnNames().clone());
 		copy.tableName		= tableName;
 		return copy;
 	}
@@ -619,8 +623,8 @@ import com.holub.tools.ArrayIterator;
 		out.append( tableName == null ? "<anonymous>" : tableName );
 		out.append( "\n" );
 
-		for( int i = 0; i < columnNames.length; ++i )
-			out.append(columnNames[i] + "\t");
+		for( int i = 0; i < getColumnNames().length; ++i )
+			out.append(getColumnNames()[i] + "\t");
 		out.append("\n----------------------------------------\n");
 
 		for( Cursor i = rows(); i.advance(); )
@@ -637,6 +641,12 @@ import com.holub.tools.ArrayIterator;
 		return out.toString();
 	}
 
+	public String[] getColumnNames() {
+		return columnNames;
+	}
+	public void setColumnNames(String[] columnNames) {
+		this.columnNames = columnNames;
+	}
 	//----------------------------------------------------------------------
 	public final static class Test
 	{

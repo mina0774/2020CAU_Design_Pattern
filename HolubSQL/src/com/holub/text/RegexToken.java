@@ -64,4 +64,8 @@ public class RegexToken implements Token
 
 	public String lexeme()	{ return matcher.group(); }
 	public String toString(){ return id; }
+	
+	public void accept(Visitor visitor) {
+		visitor.visit(this);
+	}
 }

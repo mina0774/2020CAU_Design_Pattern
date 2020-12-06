@@ -44,7 +44,7 @@ import java.sql.*;
  * @include /etc/license.txt
  */
 
-public class Console
+public class Console 
 {
 	private static final String driverName = "com.holub.database.jdbc.JDBCDriver";
 	private Connection connection = null;

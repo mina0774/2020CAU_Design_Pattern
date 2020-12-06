@@ -27,6 +27,9 @@
 package com.holub.database;
 
 import java.util.*;
+
+import javax.swing.table.TableCellEditor;
+
 import java.io.*;
 import java.text.NumberFormat;
 import java.net.URI;
@@ -300,7 +303,7 @@ public final class Database
 		 */
 		public Object get( Object key )
 		{	String tableName = (String)key;
-			try
+			try 
 			{	Table desiredTable = (Table) realMap.get(tableName);
 				if( desiredTable == null )
 				{	desiredTable = TableFactory.load(
@@ -662,7 +665,9 @@ public final class Database
 
 	public Table execute( String expression ) throws IOException, ParseFailure
 	{	try
-		{	this.expression   = expression;
+		{	
+		System.out.println(expression+" 2");
+		this.expression   = expression;
 			in				  = new Scanner(tokens, expression);
 			in.advance();	// advance to the first token.
 			return statement();
@@ -796,17 +801,21 @@ public final class Database
 			affectedRows = doDelete( tableName, expr() );
 		}
 		else if( in.matchAdvance(SELECT) != null )
-		{	List columns = idList();
-
+		{	
+			List columns = idList();
+		
+		
 			String into = null;
 			if( in.matchAdvance(INTO) != null )
 				into = in.required(IDENTIFIER);
 
 			in.required( FROM );
 			List requestedTableNames = idList();
+			
 
 			Expression where = (in.matchAdvance(WHERE) == null)
 								? null : expr();
+		
 			Table result = doSelect(columns, into,
 								requestedTableNames, where );
 			return result;
@@ -1412,7 +1421,8 @@ public final class Database
 		{	String participant = (String) tableNames.next();
 			participantsInJoin.add( tables.get(participant) );
 		}
-
+		
+		
 		// Now do the select operation. First create a Strategy
 		// object that picks the correct rows, then pass that
 		// object through to the primary table's select() method.
@@ -1435,8 +1445,9 @@ public final class Database
 			};
 
 		try
-		{	Table result = primary.select(selector, columns, participantsInJoin);
-
+		{	
+			Table result = primary.select(selector, columns, participantsInJoin);
+			System.out.println(7);
 			// If this is a "SELECT INTO <table>" request, remove the 
 			// returned table from the UnmodifiableTable wrapper, give
 			// it a name, and put it into the tables Map.

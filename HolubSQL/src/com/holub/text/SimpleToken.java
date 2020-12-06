@@ -56,4 +56,8 @@ public class SimpleToken implements Token
 
 	public String lexeme()  { return pattern; }
 	public String toString(){ return pattern; }
+	
+	public void accept(Visitor visitor) {
+		visitor.visit(this);
+	}
 }
