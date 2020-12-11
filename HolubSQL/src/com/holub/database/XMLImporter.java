@@ -102,7 +102,7 @@ public class XMLImporter implements Table.Importer {
 		public static void main(String[] args) throws IOException, SAXException, ParserConfigurationException {
 			File file = new File("/Users/jomin-a/git/2020CAU_Design_Pattern/HolubSQL/testdata/people.xml");
 			Table people = new ConcreteTable(new XMLImporter(file));
-
+	
 			System.out.println(people.toString());
 		}
 	}
