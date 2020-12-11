@@ -1,7 +1,10 @@
 package com.holub.database;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.Reader;
 import java.io.Writer;
 import java.util.Iterator;
 
@@ -62,19 +65,14 @@ public class HTMLExporter implements Table.Exporter {
 	{ 	
 		public static void main( String[] args ) throws IOException
 		{	
-			Table people = TableFactory.create( "people",
-						   new String[]{ "First", "Last"		} );
-			people.insert( new String[]{ "Allen",	"Holub" 	} );
-			people.insert( new String[]{ "Ichabod",	"Crane" 	} );
-			people.insert( new String[]{ "Rip",		"VanWinkle" } );
-			people.insert( new String[]{ "Goldie",	"Locks" 	} );
-
-			// 경로를 설정해준 후, 이 곳에 파일을 생성
-			Writer out = new FileWriter( "/Users/jomin-a/git/2020CAU_Design_Pattern/HolubSQL/testdata/people.html" );
-			people.export( new HTMLExporter(out) );
-			out.close();
+			
+	        
+	        
 		}
 	}
+	
+	
 }
+
 
 
