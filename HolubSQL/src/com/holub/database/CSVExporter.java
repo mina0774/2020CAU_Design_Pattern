@@ -117,6 +117,7 @@ public class CSVExporter implements Table.Exporter
 			Writer out = new FileWriter( "/Users/jomin-a/git/2020CAU_Design_Pattern/HolubSQL/testdata/people.csv" );
 			people.export( new CSVExporter(out) );
 			out.close();
+
 		}
 	}
 }

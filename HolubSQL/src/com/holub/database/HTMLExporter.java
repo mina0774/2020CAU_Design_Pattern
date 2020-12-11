@@ -65,8 +65,15 @@ public class HTMLExporter implements Table.Exporter {
 	{ 	
 		public static void main( String[] args ) throws IOException
 		{	
-			
-	        
+			Table people = TableFactory.create( "people",
+						   new String[]{ "First", "Last"		} );
+			people.insert( new String[]{ "Allen",	"Holub" 	} );
+			people.insert( new String[]{ "Ichabod",	"Crane" 	} );
+		
+			// 경로를 설정해준 후, 이 곳에 파일을 생성
+			Writer out = new FileWriter( "/Users/jomin-a/git/2020CAU_Design_Pattern/HolubSQL/testdata/people.html" );
+			people.export( new HTMLExporter(out) );
+			out.close();
 	        
 		}
 	}
