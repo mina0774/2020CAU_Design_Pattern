@@ -28,3 +28,21 @@ Released 27 Sept., 2004
  *    caused by bugs, including lost productivity or data)
  *    in any of this code.
  */
+
+< 코드 변경 사항 > <br>
+
+- Exporter, Importer
+com.holub.database 경로 밑에 저장 >> <br>
+HTMLExporter <br>
+XMLExporter <br>
+XMLImporter <br>
+
+- Junit Test Code
+com.holub.database 경로 밑에 저장 >> <br>
+ JunitTest_HTMLExporter <br>
+ JunitTest_XMLExporter <br>
+ JunitText_XMLImporter <br>
+ 
+ - SQL select * error handling 
+ com.holub.database 경로 밑>> <br>
+ ConcreteTable Class의 select 함수 수정 <br>
