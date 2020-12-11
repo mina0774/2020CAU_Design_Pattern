@@ -29,20 +29,20 @@ Released 27 Sept., 2004
  *    in any of this code.
  */
 
-< 코드 변경 사항 > <br>
+< 코드 변경 사항 > 
 
 - Exporter, Importer
-com.holub.database 경로 밑에 저장 >> <br>
-HTMLExporter <br>
-XMLExporter <br>
-XMLImporter <br>
+com.holub.database 경로 밑에 저장 >> 
+HTMLExporter 
+XMLExporter 
+XMLImporter
 
 - Junit Test Code
-com.holub.database 경로 밑에 저장 >> <br>
- JunitTest_HTMLExporter <br>
- JunitTest_XMLExporter <br>
- JunitText_XMLImporter <br>
+com.holub.database 경로 밑에 저장 >> 
+ JunitTest_HTMLExporter 
+ JunitTest_XMLExporter 
+ JunitText_XMLImporter 
  
  - SQL select * error handling 
- com.holub.database 경로 밑>> <br>
- ConcreteTable Class의 select 함수 수정 <br>
+ com.holub.database 경로 밑>> 
+ ConcreteTable Class의 select 함수 수정 
