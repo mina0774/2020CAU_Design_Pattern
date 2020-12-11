@@ -44,6 +44,4 @@ public interface Token
 	 */
 	String  lexeme( );
 	
-	
-	void accept(Visitor visitor);
 }

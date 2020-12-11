@@ -59,7 +59,8 @@ public class HTMLExporter implements Table.Exporter {
 	public void endTable()   throws IOException {/*nothing to do*/}
 	
 	public static class Test
-	{ 	public static void main( String[] args ) throws IOException
+	{ 	
+		public static void main( String[] args ) throws IOException
 		{	
 			Table people = TableFactory.create( "people",
 						   new String[]{ "First", "Last"		} );
